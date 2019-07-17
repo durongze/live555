@@ -8,7 +8,5 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../BasicUsageEnvironment/include
 				${CMAKE_CURRENT_SOURCE_DIR}/../groupsock/include 
 				${CMAKE_CURRENT_SOURCE_DIR}/../UsageEnvironment/include 
 				${CMAKE_CURRENT_SOURCE_DIR}/../liveMedia/include )
-add_library(mediaServer.lib 
-            STATIC
-            ${MEDIA_SERVER_SRC}
-)
+add_executable(mediaServer ${MEDIA_SERVER_SRC} )
+target_link_libraries(mediaServer ws2_32.lib BasicUsageEnvironment.lib GroupSock.lib liveMedia.lib UsageEnvironment.lib)
