@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.4.1)
+
+project(Live555)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DDYZ_DBG")
+
+file(GLOB LIVE555_SRC BasicUsageEnvironment/*.cpp BasicUsageEnvironment/include/*.hh  
+	groupsock/*.cpp groupsock/*.c groupsock/include/*.hh 
+	liveMedia/*.cpp liveMedia/*.c liveMedia/include/*.hh 
+	mediaServer/*.cpp mediaServer/include/*.hh 
+	UsageEnvironment/*.cpp UsageEnvironment/include/*.hh UsageEnvironment/*.hh 
+)
+#	WindowsAudioInputDevice/*.cpp WindowsAudioInputDevice/include/*.hh WindowsAudioInputDevice/*.hh 
+include_directories(${CMAKE_SOURCE_DIR}/BasicUsageEnvironment/include 
+				${CMAKE_SOURCE_DIR}/groupsock/include 
+				${CMAKE_SOURCE_DIR}/UsageEnvironment/include 
+				${CMAKE_SOURCE_DIR}/liveMedia/include 
+				${CMAKE_SOURCE_DIR}/UsageEnvironment
+				${CMAKE_SOURCE_DIR}/liveMedia
+				${CMAKE_SOURCE_DIR}/WindowsAudioInputDevice
+				E:/program/zlib/include/ E:/program/openssl/include/ )
+
+add_executable(mediaServer ${LIVE555_SRC} )			
+target_link_libraries(mediaServer ws2_32 )	
+add_compile_options(-DDYZ_DBG)
